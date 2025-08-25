@@ -11,6 +11,7 @@ import Link from "next/link";
 import {zodResolver} from "@hookform/resolvers/zod";
 import { issueCreateSchema } from "../../validationSchema";
 import { z } from "zod";
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 type IssueForm = z.infer<typeof issueCreateSchema>;
 
@@ -50,9 +51,9 @@ const IssueCreatePage = () => {
             placeholder="Title"
             {...register("title")}
           />
-          {errors.title && (
-            <Text as="p" className="text-red-600">{errors.title.message}</Text>
-          )}
+          
+            <ErrorMessage>{errors.title?.message}</ErrorMessage>
+          
           <Box maxWidth="100%">
             <Controller
               name="description"
@@ -61,9 +62,7 @@ const IssueCreatePage = () => {
                 <SimpleMDE placeholder="Reply to comment…" {...field} />
               )}
             />
-            {errors.description && errors.description.message && (
-            <Text as="p" className="text-red-600">{errors.description.message}</Text>
-          )}
+            <ErrorMessage>{errors.description?.message}</ErrorMessage>
           </Box>
         </Flex>
         <Button variant="solid">Submit new issue</Button>
