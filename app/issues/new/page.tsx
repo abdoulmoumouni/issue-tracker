@@ -23,6 +23,18 @@ const IssueCreatePage = () => {
   const router = useRouter();
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false);
+
+  const handleSubmitIssue = handleSubmit(async (data) => {
+          try {
+            setLoading(true);
+            await axios.post("/api/issues", data);
+            router.push("/issues");
+          } catch (error) {
+            setLoading(false);
+            setError("Something went wrong");
+            console.error(error);
+          }
+        })
   
   return (
     <div className="max-w-xl ">
@@ -36,17 +48,7 @@ const IssueCreatePage = () => {
       )}
       <form
         className="p-5 space-y-3"
-        onSubmit={handleSubmit(async (data) => {
-          try {
-            setLoading(true);
-            await axios.post("/api/issues", data);
-            router.push("/issues");
-          } catch (error) {
-            setLoading(false);
-            setError("Something went wrong");
-            console.error(error);
-          }
-        })}
+        onSubmit={handleSubmitIssue}
       >
         <Flex direction="column" gap="3" maxWidth="100%">
           <TextField.Root
