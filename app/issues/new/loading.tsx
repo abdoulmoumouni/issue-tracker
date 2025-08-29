@@ -1,10 +1,5 @@
-import ErrorMessage from '@/app/components/ErrorMessage'
-import { Box, Flex, Button, Spinner } from '@radix-ui/themes'
-import React from 'react'
-import { Controller } from 'react-hook-form'
-import loading from '../loading'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import { Box, Flex } from '@radix-ui/themes'
+import {Skeleton} from '@/app/components'
 
 
 
@@ -13,7 +8,6 @@ const newIssueLoading = () => {
     <div className='max-w-xl p-5 space-y-3'>
         <Flex direction="column" gap="3" maxWidth="100%">
           <Skeleton />
-          
           <Box maxWidth="100%">
             <Skeleton height="20rem"/>
           </Box>
